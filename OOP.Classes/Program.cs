@@ -19,3 +19,9 @@ var secondStudent = new Student( 18, TypeOfStudying.University );
 
 Console.WriteLine(
     $"Меня зовут {secondStudent.Name}, мне {secondStudent.GetAge()} лет. Мой профиль обучения : {secondStudent.GetTypeOfStudying()}");
+
+
+var students = new Student[] {firstStudent, secondStudent};
+
+var studentComparer = new StudentComparer();
+Array.Sort(students, studentComparer);

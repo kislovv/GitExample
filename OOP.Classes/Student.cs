@@ -1,11 +1,12 @@
-﻿using System.Xml.Linq;
+﻿using System.Reflection;
+using System.Xml.Linq;
 
 namespace OOP.Classes;
 
-public class Student
+public class Student : IComparable
 {
     private string _name;
-    public string Name
+    public string? Name
     {
         get
         {
@@ -22,7 +23,7 @@ public class Student
         
     }
 
-    public string LastName { get; init; }
+    public string LastName { get; set; }
     public string MidName { get; init; }
     private int age;
     private TypeOfStudying typeOfStudying;
@@ -63,4 +64,20 @@ public class Student
         this.endedAt = endedAt;
     }
 
+    public int CompareTo(object? obj)
+    {
+        if(obj is not Student student)
+        {
+            throw new ArgumentException();
+        }
+        if(student.age > this.age)
+        {
+            return 1;
+        }
+        if(student.age < this.age)
+        {
+            return -1;
+        }
+        return 0;
+    }
 }
