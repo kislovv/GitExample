@@ -25,3 +25,14 @@ var students = new Student[] {firstStudent, secondStudent};
 
 var studentComparer = new StudentComparer();
 Array.Sort(students, studentComparer);
+
+secondStudent = null;
+
+if (firstStudent?.Name == "Kirill")
+{
+    Console.WriteLine("Это лучший препод на свете :)");
+}
+
+firstStudent.LastName ??= "Kislov";
+
+firstStudent.LastName = secondStudent?.LastName ?? "Kislov";
