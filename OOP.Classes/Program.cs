@@ -1,5 +1,6 @@
 ﻿using OOP.Classes;
 
+/*
 var firstStudent = new Student(26)
 {
     Name = "Li",
@@ -36,3 +37,26 @@ if (firstStudent?.Name == "Kirill")
 firstStudent.LastName ??= "Kislov";
 
 firstStudent.LastName = secondStudent?.LastName ?? "Kislov";
+*/
+
+static string GetCheck(decimal value, string currency)
+{
+
+    var moneyWithCurrency = currency switch
+    {
+        "RUR" => value.RubleConverter(),
+        "USD" => value.DollarConverter(),
+        _ => throw new ArgumentException(nameof(currency))
+    };
+    return $"Ваш чек составил {value} {moneyWithCurrency}";
+}
+
+
+Console.WriteLine(GetCheck(150.5m, "RUR"));
+Console.WriteLine(GetCheck(250.15m, "USD"));
+Console.WriteLine(GetCheck(250.15m, "SOM"));
+
+var rubs = 100.0m;
+
+Console.WriteLine(rubs.RubleConverter());
+
