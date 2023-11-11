@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcedureTests", "Procedure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OOP.Classes", "OOP.Classes\OOP.Classes.csproj", "{9196B4AF-8552-41B7-A5AD-C2A607367A5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Labirint", "Labirint\Labirint.csproj", "{6044C58E-121A-4210-B264-97A6234E8A7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Labirint", "Labirint\Labirint.csproj", "{6044C58E-121A-4210-B264-97A6234E8A7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerLogger", "CustomerLogger\CustomerLogger.csproj", "{6A555108-BA2C-4CB4-8D27-7E2AB7965A8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{6044C58E-121A-4210-B264-97A6234E8A7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6044C58E-121A-4210-B264-97A6234E8A7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6044C58E-121A-4210-B264-97A6234E8A7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A555108-BA2C-4CB4-8D27-7E2AB7965A8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A555108-BA2C-4CB4-8D27-7E2AB7965A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A555108-BA2C-4CB4-8D27-7E2AB7965A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A555108-BA2C-4CB4-8D27-7E2AB7965A8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

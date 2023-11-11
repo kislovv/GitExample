@@ -30,7 +30,6 @@ public class RobotsPlayground
                     else
                     {
                         robot.Turn(Side.Left);
-                        startedSide = Side.Left;
                         wasTurn = true;
                     }
                     break;
