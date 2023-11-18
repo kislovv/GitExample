@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Labirint", "Labirint\Labiri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerLogger", "CustomerLogger\CustomerLogger.csproj", "{6A555108-BA2C-4CB4-8D27-7E2AB7965A8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeMachine", "CoffeeMachine\CoffeeMachine.csproj", "{C09A6DAA-7875-4EF3-AA12-2A17E423B5D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{6A555108-BA2C-4CB4-8D27-7E2AB7965A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A555108-BA2C-4CB4-8D27-7E2AB7965A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A555108-BA2C-4CB4-8D27-7E2AB7965A8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C09A6DAA-7875-4EF3-AA12-2A17E423B5D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C09A6DAA-7875-4EF3-AA12-2A17E423B5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C09A6DAA-7875-4EF3-AA12-2A17E423B5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C09A6DAA-7875-4EF3-AA12-2A17E423B5D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
