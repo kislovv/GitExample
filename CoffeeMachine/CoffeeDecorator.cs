@@ -2,10 +2,10 @@
 
 public abstract class CoffeeDecorator : CoffeeOrder
 {
-    private readonly CoffeeOrder _order;
+    protected readonly CoffeeOrder _order;
 
     protected CoffeeDecorator(CoffeeOrder order)
     {
-        _order = order;
+        _order = (CoffeeOrder)order.Clone();
     }
 }

@@ -4,7 +4,7 @@ public class SugarCoffeeDecorator : CoffeeDecorator
 {
     public SugarCoffeeDecorator(CoffeeOrder order) : base(order)
     {
-        Cost = order.Cost + 0.05m;
-        SugarVolume = order.SugarVolume + 5.0d;
+        Cost = _order.Cost + 0.05m;
+        SugarVolume = _order.SugarVolume + 5.0d;
     }
 }

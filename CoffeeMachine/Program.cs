@@ -1,6 +1,6 @@
 ﻿using CoffeeMachine;
 
-var myOrder = new CoffeeBuilder()
+var myOrder = new CoffeeBuilder(CoffeeType.Espresso)
     .AddMilk()
     .AddSugar()
     .AddMilk()

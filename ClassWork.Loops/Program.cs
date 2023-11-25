@@ -5,7 +5,7 @@ class Program
 {
 	static void Main(string[] args)
 	{
-		string n = "1S21";
+		string n = "1221";
 		Console.WriteLine(IsPalindrom(n));
 	}
 	static bool IsPalindrom(string n)
