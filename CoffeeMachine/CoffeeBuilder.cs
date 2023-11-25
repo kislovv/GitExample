@@ -5,12 +5,16 @@ public class CoffeeBuilder
     private CoffeeOrder _order;
     private readonly Dictionary<CoffeeType, CoffeeOrder> _supportCoffee = new()
     {
-        { CoffeeType.Espresso, new EspressoDecorator(new CoffeeOrder()) },
+        { CoffeeType.Espresso, new EspressoDecorator(new CoffeeOrder(CoffeeType.Espresso)) },
         { CoffeeType.Americano, new AmericanoDecorator(
             new EspressoDecorator(
-                new CoffeeOrder())) },
-        { CoffeeType.Cappuccino, new EspressoDecorator(new CoffeeOrder()) },
-        { CoffeeType.Latte, new EspressoDecorator(new CoffeeOrder()) }
+                new CoffeeOrder(CoffeeType.Americano))) },
+        { CoffeeType.Cappuccino, new CappuccinoDecorator(
+            new EspressoDecorator(
+                new CoffeeOrder(CoffeeType.Cappuccino))) },
+        { CoffeeType.Latte, new LatteDecorator(
+            new EspressoDecorator(
+                new CoffeeOrder(CoffeeType.Latte))) }
     };
 
     public CoffeeBuilder(CoffeeType coffeeType)
