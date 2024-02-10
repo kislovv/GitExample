@@ -15,7 +15,7 @@ class Program
 		{
 			throw new ArgumentException(nameof(n));
 		}
-		
+
 		return n[3] == n[0] && n[2] == n[1];
 	}
 }

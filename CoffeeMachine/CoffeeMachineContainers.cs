@@ -1,12 +1,17 @@
 ﻿namespace CoffeeMachine;
 
-internal static class CoffeeMachineContainers
+internal class CoffeeMachineContainers
 {
-    public static CoffeeData CoffeeData { get; set; } = new()
+    public CoffeeData CoffeeData { get; set; } 
+    public CoffeeMachineContainers()
     {
-        BeansVolume = 500,
-        MilkVolume = 500,
-        SugarVolume = 100,
-        WaterValue = 1000
-    };
+        CoffeeData = new CoffeeData
+        {
+            BeansVolume = 500,
+            MilkVolume = 500,
+            SugarVolume = 100,
+            WaterValue = 1000
+        };
+    }
+    
 }

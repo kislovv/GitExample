@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerLogger", "CustomerL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeMachine", "CoffeeMachine\CoffeeMachine.csproj", "{C09A6DAA-7875-4EF3-AA12-2A17E423B5D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generics", "Generics\Generics.csproj", "{964A3A7F-88C2-48EB-BFDF-DAF68A687A04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{C09A6DAA-7875-4EF3-AA12-2A17E423B5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C09A6DAA-7875-4EF3-AA12-2A17E423B5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C09A6DAA-7875-4EF3-AA12-2A17E423B5D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{964A3A7F-88C2-48EB-BFDF-DAF68A687A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{964A3A7F-88C2-48EB-BFDF-DAF68A687A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{964A3A7F-88C2-48EB-BFDF-DAF68A687A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{964A3A7F-88C2-48EB-BFDF-DAF68A687A04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
