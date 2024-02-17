@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OzonChain", "OzonChain\Ozon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{91BBDC5A-1803-4BDF-8F4F-2B64A2412C29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLinkedList", "MyLinkedList\MyLinkedList.csproj", "{38BA0718-D8FF-44C1-B062-CF16F485FC9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{91BBDC5A-1803-4BDF-8F4F-2B64A2412C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91BBDC5A-1803-4BDF-8F4F-2B64A2412C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91BBDC5A-1803-4BDF-8F4F-2B64A2412C29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38BA0718-D8FF-44C1-B062-CF16F485FC9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38BA0718-D8FF-44C1-B062-CF16F485FC9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38BA0718-D8FF-44C1-B062-CF16F485FC9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38BA0718-D8FF-44C1-B062-CF16F485FC9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
