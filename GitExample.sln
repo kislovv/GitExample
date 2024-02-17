@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeMachine", "CoffeeMach
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generics", "Generics\Generics.csproj", "{964A3A7F-88C2-48EB-BFDF-DAF68A687A04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportFederation", "SportFederation\SportFederation.csproj", "{FC36511A-B69E-4273-AE79-FF1A748744E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OzonChain", "OzonChain\OzonChain.csproj", "{8692C6F0-951D-4F7C-AA68-50E038143B44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{964A3A7F-88C2-48EB-BFDF-DAF68A687A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{964A3A7F-88C2-48EB-BFDF-DAF68A687A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{964A3A7F-88C2-48EB-BFDF-DAF68A687A04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC36511A-B69E-4273-AE79-FF1A748744E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC36511A-B69E-4273-AE79-FF1A748744E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC36511A-B69E-4273-AE79-FF1A748744E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC36511A-B69E-4273-AE79-FF1A748744E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8692C6F0-951D-4F7C-AA68-50E038143B44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8692C6F0-951D-4F7C-AA68-50E038143B44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8692C6F0-951D-4F7C-AA68-50E038143B44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8692C6F0-951D-4F7C-AA68-50E038143B44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

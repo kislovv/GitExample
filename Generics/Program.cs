@@ -61,15 +61,29 @@ session2.PushTransaction(new Transaction<string>()
 
 
 var session3 = new Session<Message>(acc1, acc2);
+var session4 = new Session<Article>(acc1, acc2);
+
 
 session3.PushTransaction(new Transaction<Message>()
 {
-    Data = new Message
+    Data = new Article
     {
         Title = "Приветствие",
         Data = "Привет!"
     },
     Code = 2,
+    From = acc1,
+    To = acc2
+});
+
+session3.PushTransaction(new Transaction<Message>()
+{
+    Data = new Message()
+    {
+        Title = "Приветствие",
+        Data = "Привет!"
+    },
+    Code = 3,
     From = acc1,
     To = acc2
 });

@@ -35,7 +35,7 @@ public class Session<T>
             }
             
             _transactions.Add(transaction);
-            Console.WriteLine($"{transaction.Code}: Message from {transaction.From.Login}: {transaction.Data?.ToString()}");
+            Console.WriteLine($"{transaction.Code}: Message from {transaction.From.Login}: {transaction.Data.ToString()}");
             return true;
         }
 
