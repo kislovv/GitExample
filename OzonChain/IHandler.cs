@@ -2,6 +2,6 @@
 
 public interface IHandler<T>
 {
-    IHandler<T>? Successor { get; }
+    IHandler<T>? Successor { get; set; }
     T Handle(T element);
 }

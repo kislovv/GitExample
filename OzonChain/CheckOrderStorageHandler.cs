@@ -1,9 +1,9 @@
 ﻿namespace OzonChain;
 
-public class CheckOrderStorageHandler(IHandler<Order>? successor, List<Product> products) : IHandler<Order>
+public class CheckOrderStorageHandler(List<Product> products) : IHandler<Order>
 {
     private readonly List<Product> _products = products;
-    public IHandler<Order>? Successor { get; } = successor;
+    public IHandler<Order>? Successor { get; set; }
 
     public Order Handle(Order element)
     {

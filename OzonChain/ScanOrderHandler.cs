@@ -1,8 +1,8 @@
 ﻿namespace OzonChain;
 
-public class ScanOrderHandler(IHandler<Order>? successor) : IHandler<Order>
+public class ScanOrderHandler : IHandler<Order>
 {
-    public IHandler<Order>? Successor { get; } = successor;
+    public IHandler<Order>? Successor { get; set; }
 
     public Order Handle(Order element)
     {

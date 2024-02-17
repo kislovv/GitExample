@@ -24,9 +24,9 @@ var order = new Order
     Name = "Pizza"
 };
 
-var resolveHandler = new ResolveOrderHandler();
-var scanHandler = new ScanOrderHandler(resolveHandler);
-var checkOrderHandler = new CheckOrderStorageHandler(scanHandler, products);
+var orderHandlerAggregator = new HandlerAggregator<Order>(new CheckOrderStorageHandler(products));
+orderHandlerAggregator.AddHandler(new ScanOrderHandler());
+orderHandlerAggregator.AddHandler(new ResolveOrderHandler());
 
-var result = checkOrderHandler.Handle(order);
+var result = orderHandlerAggregator.StartChain(order);
     
