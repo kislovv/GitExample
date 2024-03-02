@@ -6,10 +6,10 @@ public class HydroMetCenter : IObservable
     
     public void NotifyObservers()
     {
-        NotifyUpdate?.Invoke(temp);
+        Update?.Invoke(temp);
     }
 
-    public event IObservable.Update? NotifyUpdate;
+    public event Action<double> Update;
 
     public void UpdateTemp()
     {

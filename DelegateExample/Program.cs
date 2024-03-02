@@ -23,15 +23,15 @@ var firstClient = new ConsoleTemperatureClient();
 var secondClient = new ConsoleTemperatureClient();
 var thirdClient = new ConsoleTemperatureClient();
 
-hydrometcenter.NotifyUpdate += firstClient.Update;
-hydrometcenter.NotifyUpdate += secondClient.Update;
-hydrometcenter.NotifyUpdate += thirdClient.Update;
+hydrometcenter.Update += firstClient.Update;
+hydrometcenter.Update += secondClient.Update;
+hydrometcenter.Update += thirdClient.Update;
 
 hydrometcenter.UpdateTemp();
-hydrometcenter.NotifyUpdate -= firstClient.Update;
+hydrometcenter.Update -= firstClient.Update;
 Thread.Sleep(2000);
 hydrometcenter.UpdateTemp();
-hydrometcenter.NotifyUpdate -= secondClient.Update;
+hydrometcenter.Update -= secondClient.Update;
 Thread.Sleep(2000);
 hydrometcenter.UpdateTemp();
-hydrometcenter.NotifyUpdate -= thirdClient.Update;
+hydrometcenter.Update -= thirdClient.Update;
