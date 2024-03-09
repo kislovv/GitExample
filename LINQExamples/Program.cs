@@ -1,4 +1,5 @@
 ﻿
+using System.Threading.Channels;
 using LINQExamples;
 
 var listOfSchoolStudents = new List<SchoolStudent>()
@@ -45,4 +46,25 @@ bool CheckAge(SchoolStudent schoolStudent)
     return schoolStudent.Age >= 18;
 }
 
-Console.WriteLine("Hello, World!");
+var list = new List<Action>();
+
+
+/*for (int i = 0; i < 10; i++)
+{
+    var outI = i;
+    list.Add(() => Console.WriteLine(outI));
+}*/
+
+int i = 0;
+while (i < 10)
+{
+    //избавляемся от замыкания
+    var outI = i;
+    list.Add(() => Console.WriteLine(outI));
+    i++;
+}
+
+foreach (var temp in list)
+{
+    temp();
+}
