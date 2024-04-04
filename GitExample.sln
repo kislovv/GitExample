@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdapterExample", "AdapterEx
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileWorkExamples", "FileWorkExamples\FileWorkExamples.csproj", "{54B396A2-F702-480D-8CC9-25C5BE0AECA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParallelTasks", "ParallelTasks\ParallelTasks.csproj", "{0045E29C-4DB2-4333-B5FD-AEBCB40B1252}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +143,10 @@ Global
 		{54B396A2-F702-480D-8CC9-25C5BE0AECA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54B396A2-F702-480D-8CC9-25C5BE0AECA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54B396A2-F702-480D-8CC9-25C5BE0AECA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0045E29C-4DB2-4333-B5FD-AEBCB40B1252}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0045E29C-4DB2-4333-B5FD-AEBCB40B1252}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0045E29C-4DB2-4333-B5FD-AEBCB40B1252}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0045E29C-4DB2-4333-B5FD-AEBCB40B1252}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
