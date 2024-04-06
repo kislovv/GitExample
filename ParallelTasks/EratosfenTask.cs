@@ -5,9 +5,11 @@ public class EratosfenTask(int n)
     public int N { get; set; } = n;
     public int PrimeNumbersCount { get; set; } = 0;
     public List<int> BasePrimeNumbers { get; set; } = [];
+    public List<int> AllPrimeNumbers { get; set; } = [];
 
     public void CountPrimeNumbers()
     {
+        object _lock = new();
         switch (N)
         {
             case 0:
@@ -31,14 +33,30 @@ public class EratosfenTask(int n)
             }
         }
         
+        AllPrimeNumbers.AddRange(BasePrimeNumbers);
+        
         Parallel.For(lastCheckedPrimaryNum, N + 1, i =>
         {
             if (CheckPrimaryNum(i))
             {
+                try
+                {
+                    Monitor.Enter(_lock);
+                    AllPrimeNumbers.Add(i);
+                    
+                    Monitor.Pulse(_lock);
+                    
+                    Console.WriteLine($"Added {i}");
+                }
+                finally
+                {
+                    Monitor.Exit(_lock);
+                }
                 Interlocked.Add(ref primeNumbersCount, 1);
             }
         });
         PrimeNumbersCount = primeNumbersCount;
+        AllPrimeNumbers.Sort();
     }
 
     private bool CheckPrimaryNum(int num)
