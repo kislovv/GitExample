@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParallelTasks", "ParallelTa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVLTree", "AVLTree\AVLTree.csproj", "{DA7FDBE3-664A-4517-9E98-6C5A49532120}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionExample", "ReflectionExample\ReflectionExample.csproj", "{04446C4A-5CB0-469E-A2CF-F39F67656F18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{DA7FDBE3-664A-4517-9E98-6C5A49532120}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA7FDBE3-664A-4517-9E98-6C5A49532120}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA7FDBE3-664A-4517-9E98-6C5A49532120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04446C4A-5CB0-469E-A2CF-F39F67656F18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04446C4A-5CB0-469E-A2CF-F39F67656F18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04446C4A-5CB0-469E-A2CF-F39F67656F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04446C4A-5CB0-469E-A2CF-F39F67656F18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

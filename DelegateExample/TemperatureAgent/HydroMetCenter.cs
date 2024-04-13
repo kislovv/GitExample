@@ -1,5 +1,6 @@
 ﻿namespace DelegateExample.TemperatureAgent;
 
+[HydroMedCenterMeta("Kazan", "2024-04-13")]
 public class HydroMetCenter : IObservable
 {
     private double temp = new Random().NextDouble() * new Random().Next(-10, 10);

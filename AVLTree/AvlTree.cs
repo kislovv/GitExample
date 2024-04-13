@@ -46,12 +46,22 @@ public class AvlTree<T>(T data)
         }
     }
 
+    private void AddInternal(AVLNode<T> insertNode, AVLNode<T> currentNode)
+    {
+        
+    }
+
     private void Balance()
     {
         
     }
 
     private void RightRotation(AVLNode<T> subTree)
+    {
+        
+    }
+    
+    private void LeftRotation(AVLNode<T> subTree)
     {
         
     }
