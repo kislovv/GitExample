@@ -55,6 +55,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionExample", "Reflec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractsExample", "ContractsExample\ContractsExample.csproj", "{8A15FEAC-3DF5-4BE6-B565-B5F9E2C9FCF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperCalculator", "SuperCalculator\SuperCalculator.csproj", "{CEA7688B-B52C-4123-9825-0401F2C93C7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperPuperCalculator", "SuperPuperCalculator\SuperPuperCalculator.csproj", "{91470496-A9AA-493D-8C54-1F25E81A0084}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +169,14 @@ Global
 		{8A15FEAC-3DF5-4BE6-B565-B5F9E2C9FCF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A15FEAC-3DF5-4BE6-B565-B5F9E2C9FCF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A15FEAC-3DF5-4BE6-B565-B5F9E2C9FCF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA7688B-B52C-4123-9825-0401F2C93C7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA7688B-B52C-4123-9825-0401F2C93C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA7688B-B52C-4123-9825-0401F2C93C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA7688B-B52C-4123-9825-0401F2C93C7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91470496-A9AA-493D-8C54-1F25E81A0084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91470496-A9AA-493D-8C54-1F25E81A0084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91470496-A9AA-493D-8C54-1F25E81A0084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91470496-A9AA-493D-8C54-1F25E81A0084}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

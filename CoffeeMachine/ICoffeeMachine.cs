@@ -2,8 +2,8 @@
 
 public interface ICoffeeMachine
 {
-    CoffeeOrder ChooseCoffee(CoffeeType coffeeType);
-    CoffeeOrder AddSugar();
-    CoffeeOrder AddMilk();
+    void ChooseCoffee(CoffeeType coffeeType);
+    void AddSugar();
+    void AddMilk();
     (bool isSuccess, string check) TryPay(decimal money, out Coffee coffee);
 }

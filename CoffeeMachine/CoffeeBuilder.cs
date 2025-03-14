@@ -19,11 +19,12 @@ public class CoffeeBuilder
 
     public CoffeeBuilder(CoffeeType coffeeType)
     {
-        if (!_supportCoffee.TryGetValue(coffeeType, out _order))
+        if (!_supportCoffee.TryGetValue(coffeeType, out var order))
         {
             throw new NotSupportedException(
                 "Данный тип коффе не поддерживается этой машиной!");
         }
+        _order = order;
     }
 
     public CoffeeBuilder AddMilk()
@@ -32,7 +33,7 @@ public class CoffeeBuilder
         return this;
     }
 
-    public CoffeeBuilder AddSugar()
+    public CoffeeBuilder? AddSugar()
     {
         _order = new SugarCoffeeDecorator(_order);
         return this;

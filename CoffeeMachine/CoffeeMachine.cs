@@ -3,22 +3,28 @@
 public class CoffeeMachine : ICoffeeMachine
 {
     private CoffeeMachineContainers _coffeeMachineContainers = new();
+    private CoffeeBuilder? _coffeeBuilder;
+    
     private readonly Brand _brand;
     public CoffeeMachine(Brand brand)
     {
         _brand = brand;
     }
-    public CoffeeOrder ChooseCoffee(CoffeeType coffeeType)
+    public void ChooseCoffee(CoffeeType coffeeType)
     {
-        throw new NotImplementedException();
+        _coffeeBuilder = new CoffeeBuilder(coffeeType);
     }
 
-    public CoffeeOrder AddSugar()
+    public void AddSugar()
     {
-        throw new NotImplementedException();
+        if (_coffeeBuilder is null)
+        {
+            throw new InvalidOperationException("No coffee builder available.");
+        }
+        _coffeeBuilder = _coffeeBuilder.AddSugar();
     }
 
-    public CoffeeOrder AddMilk()
+    public void AddMilk()
     {
         throw new NotImplementedException();
     }
