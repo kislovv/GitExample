@@ -30,3 +30,5 @@ var pointPoint = new ThreeDPoint<Point>()
     Y = new Point{ X = 2, Y = 3 },
     Z = new Point{ X = 3, Y = 4 }
 };
+
+var dict = new Dictionary<int, Point>();
