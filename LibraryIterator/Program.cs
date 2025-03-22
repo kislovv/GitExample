@@ -18,5 +18,11 @@ class Program
             Console.WriteLine($"{i.Title} {i.Author} {i.Year}");
             iterator.Next();
         }
-    }
+        
+        IEnumerable<Book> aggregate2 = new LibraryAggregateV2(books);
+        foreach (Book book in aggregate2)
+        {
+            Console.WriteLine($"{book.Title} {book.Author} {book.Year}");
+        }
+    }//:)
 }
