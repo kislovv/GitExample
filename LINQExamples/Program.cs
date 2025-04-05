@@ -1,70 +1,33 @@
-﻿
-using System.Threading.Channels;
-using LINQExamples;
+﻿using LINQExamples;
 
-var listOfSchoolStudents = new List<SchoolStudent>()
+Console.WriteLine(string.Join(", ",ProcedureTasks.FindAllDisappearedNums([1,2,4,4,5,5,7,8,9,10,10])));
+
+string[] array = ProcedureTasks.GetFizzBuzz(Enumerable.Range(10, 30).ToArray());
+foreach (string numOfFizzBuzz in array)
 {
-    new SchoolStudent("Petya", 18, 11),
-    new SchoolStudent("Masha", 17, 10),
-    new SchoolStudent("Vasya", 18, 11),
-    new SchoolStudent("Artur", 16, 9),
-    new SchoolStudent("Leyla", 15, 8),
-    new SchoolStudent("Joseph", 18, 11)
-};
-
-var groupedSchoolStudentsByAge = listOfSchoolStudents
-    .GroupBy(s => s.Age)
-    .ToDictionary(students => students.Key,
-        students => students.ToList());
-
-
-Func<SchoolStudent, bool> checkSchoolStudent = 
-    (schoolStudent) => schoolStudent.Age >= 18;
-
-
-var universityStudents = listOfSchoolStudents
-    .Where(schoolStudent => schoolStudent.Age >= 18)
-    .Select(s => new UniversityStudent
-    {
-        Age = s.Age,
-        UniversityName = "K(P)FU",
-        Name = s.Name,
-        Cource = 1
-    }).ToList();
-
-listOfSchoolStudents.Add(new SchoolStudent("Abobus", 19, 12));
-
-foreach (var student in universityStudents)
-{
-    Console.WriteLine(student.Name);
+    Console.WriteLine(numOfFizzBuzz);
 }
 
+string record = "LLAPPPAPP";
+Console.WriteLine(ProcedureTasks.CheckRecord(record));
 
 
-bool CheckAge(SchoolStudent schoolStudent)
-{
-    return schoolStudent.Age >= 18;
-}
+var arr = new List<int>{1,2,3,4,5,6,7,8,9,10,11};
+Console.WriteLine(arr.Where(num => num % 2 != 0)
+    .Select(num => num.ToString())
+    .Aggregate(
+        "Numbers: " ,
+        (a, b) => a + "," + b, 
+        result => result + " |Done!"));
 
-var list = new List<Action>();
+int count = ProcedureTasks.UniqueMorseRepresentations(["cat", "card", "fact", "road", "return", "gin", "zen"]);
+Console.WriteLine(count);
+
+Console.WriteLine(string.Join(", ", ProcedureTasks.FindWords(["qwerytryity", "dfgdsfg", "vevrevr onnoi"])));
+
+Console.WriteLine(ProcedureTasks.GetMajorityElement([1, 2, 3]));
+Console.WriteLine(ProcedureTasks.IsSubsequence("abcdf", "bd"));
+Console.WriteLine(ProcedureTasks.IsSubsequence("abcdf", "db"));
 
 
-/*for (int i = 0; i < 10; i++)
-{
-    var outI = i;
-    list.Add(() => Console.WriteLine(outI));
-}*/
 
-int i = 0;
-while (i < 10)
-{
-    //избавляемся от замыкания
-    var outI = i;
-    list.Add(() => Console.WriteLine(outI));
-    i++;
-}
-
-foreach (var temp in list)
-{
-    temp();
-}

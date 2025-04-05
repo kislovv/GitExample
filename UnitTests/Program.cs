@@ -26,4 +26,12 @@ public class Program
         }
         return result;
     }
+
+    public int GetMajorityElement(int[] array)
+    {
+        return array.GroupBy(x => x)
+            .ToDictionary(ints =>ints.Key, outs => outs.Count())
+            .OrderBy(ints => ints.Value)
+            .Last().Key;
+    }
 }
