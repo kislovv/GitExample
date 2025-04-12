@@ -75,6 +75,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForecastStation", "Forecast
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedList11407", "LinkedList11407\LinkedList11407.csproj", "{FF57CAF4-D381-4A3E-A203-27FA6D838187}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Streams", "Streams\Streams.csproj", "{A907BDD6-7D29-4B25-BE7E-AC00BC2AC5E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -225,6 +227,10 @@ Global
 		{FF57CAF4-D381-4A3E-A203-27FA6D838187}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF57CAF4-D381-4A3E-A203-27FA6D838187}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF57CAF4-D381-4A3E-A203-27FA6D838187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A907BDD6-7D29-4B25-BE7E-AC00BC2AC5E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A907BDD6-7D29-4B25-BE7E-AC00BC2AC5E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A907BDD6-7D29-4B25-BE7E-AC00BC2AC5E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A907BDD6-7D29-4B25-BE7E-AC00BC2AC5E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
