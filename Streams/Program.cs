@@ -1,4 +1,6 @@
-﻿namespace Streams;
+﻿using System.Text.Json;
+
+namespace Streams;
 
 class Program
 {
@@ -45,5 +47,24 @@ class Program
             s = s.Replace("старое", "новое");
             result.WriteLine(s);
         }
+    }
+    
+    public static bool ValidateJSON(string pathToFile)
+    {
+        string fileText = File.ReadAllText(pathToFile);
+
+        try
+        {
+            Dictionary<string, object>? jsonData = JsonSerializer.Deserialize<Dictionary<string, object>>(fileText);
+            if (jsonData == null)
+            {
+                return false;
+            }
+        }
+        catch
+        {
+            return false;
+        }
+        return true;
     }
 }
