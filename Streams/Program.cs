@@ -126,5 +126,7 @@ class Program
             writer.WriteLine(avgMessage);
             Console.WriteLine(avgMessage);
         }
+        
+        writer.Dispose();
     }
 }
