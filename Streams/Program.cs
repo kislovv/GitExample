@@ -67,4 +67,64 @@ class Program
         }
         return true;
     }
+    
+    public static void SaveEmployeesReportFromCsv(string inputPath)
+    {
+        if (Path.GetExtension(inputPath) != ".csv")
+        {
+            Console.WriteLine("Input file is not .csv");
+            return;
+        }
+
+        List<Employee> employees = new List<Employee>();
+
+        using var reader = new StreamReader(inputPath);
+
+        reader.ReadLine(); // скипаем заголовки
+
+        var line = reader.ReadLine();
+        while (line != null)
+        {
+            if (string.IsNullOrEmpty(line))
+            {
+                continue;
+            }
+
+            var values = line.Split(',');
+            employees.Add(new Employee
+            {
+                Name = values[1],
+                Age = int.Parse(values[3]),
+                Department = values[4],
+            });
+
+            line = reader.ReadLine();
+        }
+
+        if (employees.Count == 0)
+        {
+            Console.WriteLine("No employees found");
+            return;
+        }
+
+        var oldest = employees.OrderBy(e => e.Age).First();
+        var averageByDept = employees.GroupBy(e => e.Department)
+            .Select(g => new
+                {
+                    Department = g.Key,
+                    Average = g.Average(e => e.Age)
+                }
+            ).ToList();
+
+        using var writer = new StreamWriter("report.txt");
+        var oldestMessage = $"Oldest employee: {oldest.Name}";
+        writer.WriteLine(oldestMessage);
+        Console.WriteLine(oldestMessage);
+        foreach (var avgMessage in averageByDept.Select(department =>
+                     $"Department: {department.Department} - Average age: {department.Average}"))
+        {
+            writer.WriteLine(avgMessage);
+            Console.WriteLine(avgMessage);
+        }
+    }
 }
