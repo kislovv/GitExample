@@ -79,6 +79,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Streams", "Streams\Streams.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaPlayerApp", "MediaPlayerApp\MediaPlayerApp.csproj", "{707E265A-EF0B-4B43-B457-206710AB6631}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryTree", "BinaryTree\BinaryTree.csproj", "{41881A87-A237-46DE-88DE-A8211C2FC744}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -237,6 +239,10 @@ Global
 		{707E265A-EF0B-4B43-B457-206710AB6631}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{707E265A-EF0B-4B43-B457-206710AB6631}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{707E265A-EF0B-4B43-B457-206710AB6631}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41881A87-A237-46DE-88DE-A8211C2FC744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41881A87-A237-46DE-88DE-A8211C2FC744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41881A87-A237-46DE-88DE-A8211C2FC744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41881A87-A237-46DE-88DE-A8211C2FC744}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

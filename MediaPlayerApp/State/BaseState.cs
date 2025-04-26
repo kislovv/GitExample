@@ -6,7 +6,10 @@ public abstract class BaseState<T> : IPlaybackState<T>
     {
         return newState switch
         {
-            PlayerState.Stop => throw new System.NotImplementedException(),
+            PlayerState.Stop => (IPlaybackState<T>)new StoppedState(),
+            PlayerState.Play => (IPlaybackState<T>)new PlayState(),
+            PlayerState.Pause => (IPlaybackState<T>)new PauseState(),
+            _ => throw new ArgumentOutOfRangeException(nameof(newState), newState, null)
         };
     }
 

@@ -4,6 +4,16 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>1.1</Version>
     </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BankAccount\BankAccount.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="YamlDotNet" Version="16.3.0" />
+    </ItemGroup>
 
 </Project>

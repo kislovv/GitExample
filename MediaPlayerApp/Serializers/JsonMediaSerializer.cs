@@ -1,9 +1,11 @@
-﻿using MediaPlayerApp.Models;
+﻿using System.Text.Json;
+using MediaPlayerApp.Models;
 
 namespace MediaPlayerApp.Serializers;
 
 public class JsonMediaSerializer: IMediaSerializer
 {
+    private readonly JsonMediaItemConverter _converter = new();
     public void Serialize(string path, List<IMediaItem> items)
     {
         throw new NotImplementedException();
@@ -11,6 +13,9 @@ public class JsonMediaSerializer: IMediaSerializer
 
     public List<IMediaItem> Deserialize(string path)
     {
-        throw new NotImplementedException();
+        return JsonSerializer.Deserialize<List<IMediaItem>>(path, new JsonSerializerOptions
+        {
+            Converters = { _converter }
+        }) ?? [];
     }
 }

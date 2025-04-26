@@ -9,7 +9,7 @@ public class YamlMediaSerializer: IMediaSerializer
         throw new NotImplementedException();
     }
 
-    public List<IMediaItem> Deserialize(string path)
+    public List<IMediaItem>? Deserialize(string path)
     {
         throw new NotImplementedException();
     }
