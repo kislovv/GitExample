@@ -1,4 +1,6 @@
-﻿namespace MediaPlayerApp.State;
+﻿using System.Collections;
+
+namespace MediaPlayerApp.State;
 
 public abstract class BaseState<T> : IPlaybackState<T>
 {
