@@ -2,6 +2,7 @@
 
 using System.Diagnostics;
 using ParallelTasks;
+using ParallelTasks.ExamsTask;
 using ParallelTasks.Singleton;
 
 /*
@@ -237,5 +238,56 @@ foreach (var action in listActions)
     action();
 }
 */
+
+//Простые числа
+static bool IsPrimary(int num)
+{
+    for (int index = 2; index < num; index++)
+    {
+        if (num % index == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+static void CountOfPrimaryNums(int numsCount)
+{
+    SortedList<int, int> countSortedList = new SortedList<int, int>();
+    countSortedList.Add(2, 2);
+        
+    object locker = new object();
+        
+    Parallel.For(3, numsCount,new ParallelOptions
+    {
+        MaxDegreeOfParallelism = Environment.ProcessorCount
+    }, i =>
+    {
+        if (IsPrimary(i))
+        {
+            lock (locker)
+            {
+                countSortedList.Add(i, i);
+            }
+        }
+    });
+    File.AppendAllText("output.txt", string.Join(", ", 
+        countSortedList.Values) + Environment.NewLine);
+        
+    Console.WriteLine(countSortedList.Count);
+}
+
+
+//Сдача экзаменов
+var math = new Subject("Математика", new Teacher("Иванов"));
+var physics = new Subject("Физика", new Teacher("Петров"));
+var cs = new Subject("Информатика", new Teacher("Сидоров"));
+
+var subjects = new List<Subject> { math, physics, cs };
+var students = Enumerable.Range(1, 10)
+    .Select(id => new Student(id)).ToList();
+//TODO: распаралелить сдачу экзамена!
 
 Console.ReadKey();

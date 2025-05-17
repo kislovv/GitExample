@@ -7,7 +7,18 @@ class Program
 {
 	static void Main(string[] args)
 	{
-		Console.WriteLine(int.MaxValue - 1);
+		var alice = new People(){Name = "Alice"};
+		var bob = new People(){Name = "Bob"};
+
+		Family<People> family = alice + bob;
+
+		Cat cat = new Cat()
+		{
+			Name = "Tom",
+			Breed = "British",
+		};
+		
+		Exhibitor catExhibitor = (Exhibitor)cat;
 	}
 }
 
