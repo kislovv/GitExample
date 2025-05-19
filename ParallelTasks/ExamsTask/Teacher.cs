@@ -2,10 +2,9 @@
 
 public class Teacher
 {
+    private SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
     public string Name { get; }
-    /*spoiler
-    private readonly SemaphoreSlim _lock = new(1, 1);
-    */
+
     public Teacher(string name)
     {
         Name = name;
@@ -13,6 +12,10 @@ public class Teacher
 
     public void TakeExam(Student student, Subject subject)
     {
-        //TODO: Сделать метод
+        _semaphore.Wait();
+        student.ExamStatuses[subject] = ExamStatus.InProgress;
+        Console.WriteLine($"student {student.Id} is taking exam {subject.Name}");
+        Thread.Sleep(3000);
+        _semaphore.Release();
     }
 }

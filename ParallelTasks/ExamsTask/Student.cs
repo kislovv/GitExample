@@ -12,11 +12,17 @@ public class Student
 
     public void PrepareForSubject(Subject subject)
     {
-        //TODO: Сделать метод
+        ExamStatuses.Add(subject, ExamStatus.Preparing);
+        Console.WriteLine($"student {this.Id} is preparing for {subject.Name}");
+        Thread.Sleep(4000);
     }
 
     public void TakeExam(Subject subject)
     {
-        //TODO: Сделать метод
+        ExamStatuses[subject] = ExamStatus.Waiting;
+        Console.WriteLine($"student {this.Id} is waiting for {subject.Name}");
+        subject.Teacher.TakeExam(this, subject);
+        ExamStatuses[subject] = ExamStatus.Completed;
+        Console.WriteLine($"student {this.Id} is completed {subject.Name}");
     }
 }

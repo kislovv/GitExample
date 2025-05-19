@@ -240,6 +240,7 @@ foreach (var action in listActions)
 */
 
 //Простые числа
+/*
 static bool IsPrimary(int num)
 {
     for (int index = 2; index < num; index++)
@@ -278,9 +279,11 @@ static void CountOfPrimaryNums(int numsCount)
         
     Console.WriteLine(countSortedList.Count);
 }
+*/
 
 
 //Сдача экзаменов
+/*
 var math = new Subject("Математика", new Teacher("Иванов"));
 var physics = new Subject("Физика", new Teacher("Петров"));
 var cs = new Subject("Информатика", new Teacher("Сидоров"));
@@ -288,6 +291,52 @@ var cs = new Subject("Информатика", new Teacher("Сидоров"));
 var subjects = new List<Subject> { math, physics, cs };
 var students = Enumerable.Range(1, 10)
     .Select(id => new Student(id)).ToList();
-//TODO: распаралелить сдачу экзамена!
 
-Console.ReadKey();
+var stopwatch = new Stopwatch();
+
+stopwatch.Start();
+Parallel.ForEach(students, student =>
+{
+    Parallel.ForEach(subjects, subject =>
+    {
+        student.PrepareForSubject(subject);
+        student.TakeExam(subject);
+    });
+});
+stopwatch.Stop();
+Console.WriteLine(stopwatch.Elapsed.Seconds);
+
+students.ForEach(student => student.ExamStatuses.Clear());
+
+stopwatch.Reset();
+
+stopwatch.Start();
+Parallel.ForEach(students, student =>
+{
+    foreach (var subject in subjects)
+    {
+        student.PrepareForSubject(subject);
+        student.TakeExam(subject);
+    }
+});
+stopwatch.Stop();
+Console.WriteLine(stopwatch.Elapsed.Seconds);
+*/
+
+
+int num = 0; 
+// устанавливаем метод обратного вызова
+TimerCallback tm = new TimerCallback(Count);
+// создаем таймер
+Timer timer = new Timer(tm, num, 0, 2000);
+
+Console.ReadLine();
+
+static void Count(object obj)
+{
+    int x = (int)obj;
+    for (int i = 1; i < 9; i++, x++)
+    {
+        Console.WriteLine($"{x * i}");      
+    }
+}

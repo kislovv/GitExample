@@ -2,7 +2,7 @@
 
 public class Computer(string name)
 {
-    private Os? _os = new Os(name);
+    private Os? _os;
 
     public void LaunchOs(string name)
     {
