@@ -1,4 +1,5 @@
-﻿using CustomerLogger;
+﻿using System.Linq.Expressions;
+using CustomerLogger;
 
 var calculator = new Calculator(new FileLogger("log.txt"));
 
@@ -15,4 +16,4 @@ var customLoggerv2 = new LoggerBuilder(new ConsoleLogger())
     .WithFile("log.txt")
     .WithConsole()
     .Build();
-customLoggerv2.Log("privetiki!!!"); 
+customLoggerv2.Log("privetiki!!!");
