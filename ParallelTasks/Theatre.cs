@@ -4,16 +4,15 @@ namespace ParallelTasks;
 
 public class Theatre
 {
-    private List<int> viewers = Enumerable.Range(1, 100).ToList();
-    private int timeOfAct = 20;
-    private int countOfWC = 5;
+    private readonly List<int> _viewers = Enumerable.Range(1, 100).ToList();
+    private const int TimeOfAct = 20;
 
     public void StartAct()
     {
         SemaphoreSlim wc = new SemaphoreSlim(5, 5);
         Task task = Task.Run(() =>
         {
-            for (int i = 0; i < timeOfAct; i++)
+            for (int i = 0; i < TimeOfAct; i++)
             {
                 ShowAct(i + 1);
             }
@@ -21,10 +20,10 @@ public class Theatre
             Console.WriteLine("Представление окончено!");
         });
 
-        Parallel.ForEach(viewers, i =>
+        Parallel.ForEach(_viewers, i =>
         {
-            var timeToGoWC = new Random().Next(1, 20);
-            using Timer timer = new Timer(timeToGoWC * 1000);
+            var timeToGoWc = new Random().Next(1, 20); 
+            Timer timer = new Timer(timeToGoWc * 1000);
             timer.AutoReset = false;
             timer.Elapsed += (_, _) =>
             {
