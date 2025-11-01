@@ -18,6 +18,16 @@ class Program
         var markingProductHandler = new MarkingProductHandler(getProductHandler);
         var storageHandler = new StorageHandler(products, markingProductHandler);
         
+        IHandler<Order>? current = storageHandler;
+        HashSet<IHandler<Order>> handlers = new HashSet<IHandler<Order>>();
+        while (current != null)
+        {
+            if (!handlers.Add(current))
+            {
+                throw new Exception("Has cicle");
+            }
+        }
+        
         storageHandler.Handle(order);
     }
 }
