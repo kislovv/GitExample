@@ -1,22 +1,19 @@
 ﻿namespace OOP.Classes;
 
-public class Student
+public class Student : Human
 {
-    public string FullName { get; private set; }
-    public int Age { get; private set; }
     public TypeOfStudy TypeOfStudy { get; init; }
     public int LevelOfKnowledge { get; private set; }
 
-    public Student(string fullName, int age)
+    public Student(string fullName, int age): base(fullName, age)
     {
-        FullName = fullName;
-        Age = age;
+        LevelOfKnowledge = 50;
+        TypeOfStudy = TypeOfStudy.University;
     }
     
-    public Student(string fullName, int age, TypeOfStudy typeOfStudy)
+    public Student(string fullName, int age,
+        TypeOfStudy typeOfStudy): this(fullName, age)
     {
-        FullName = fullName;
-        Age = age;
         TypeOfStudy = typeOfStudy;
     }
 
@@ -24,5 +21,31 @@ public class Student
     {
         Random rand = new Random();
         LevelOfKnowledge = rand.Next(1, 100);
+    }
+
+    public void PassExam()
+    {
+        if (LevelOfKnowledge < 56)
+        {
+            Console.WriteLine("Not today!");
+            return;
+        }
+
+        Age++;
+    }
+
+    public override void Eat()
+    {
+        Console.WriteLine($"{FullName} as student eating in shawerma:) ");
+    }
+
+    public override void Sleep()
+    {
+        Console.WriteLine($"{FullName} as student sleeping in dorm");
+    }
+
+    public override string ToString()
+    {
+        return $"Name: {FullName}\nAge: {Age}\nStudy in: {TypeOfStudy}\nLevel: {LevelOfKnowledge}";
     }
 }
