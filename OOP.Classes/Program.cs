@@ -46,3 +46,15 @@ var game = new Game(Genre.Pony)
 //student.Sleep();
 
 //Console.WriteLine(student);
+int amount = 345;
+Console.WriteLine(amount.Convert());
+string input = "cat";
+Console.WriteLine(input.Reverse());
+
+
+Rocket souz = new Souz();
+FalconS fs = new FalconS();
+
+
+RocketStation.Start(souz, fs);
+
