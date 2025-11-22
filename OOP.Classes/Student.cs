@@ -39,7 +39,7 @@ public class Student : Human
         Console.WriteLine($"{FullName} as student eating in shawerma:) ");
     }
 
-    public override void Sleep()
+    public new void Sleep()
     {
         Console.WriteLine($"{FullName} as student sleeping in dorm");
     }

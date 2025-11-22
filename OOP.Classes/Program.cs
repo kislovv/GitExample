@@ -52,9 +52,13 @@ string input = "cat";
 Console.WriteLine(input.Reverse());
 
 
-Rocket souz = new Souz();
+IRocket souz = new Souz();
+
 FalconS fs = new FalconS();
 
 
 RocketStation.Start(souz, fs);
 
+
+Human h = new Student("Kislov Kirill", 28, TypeOfStudy.University);
+h.Sleep();

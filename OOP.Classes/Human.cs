@@ -12,7 +12,7 @@ public abstract class Human :  IHuman
         Age = age;
     }
 
-    public virtual void Sleep()
+    public void Sleep()
     {
         Console.WriteLine("Human Sleeping...");
     }
