@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using CoffeeMaker.Facades;
+using CoffeeMaker.Factories;
 
 namespace CoffeeMaker;
 
@@ -23,155 +25,65 @@ public class CoffeeMachine : ICoffeeMachine
     private readonly Account _account =  new Account();
     private readonly IngredientStorage _storage = new IngredientStorage();
     private readonly ICoffeeOrderRepository _orderRepository = new CoffeeOrderRepository();
-    
+    private readonly CoffeeOrderFactory _factory = new CoffeeOrderFactory(new CoffeeFactory());
+    private readonly ICoffeeOrderFacade _coffeeOrderFacade;
 
+    public CoffeeMachine()
+    {
+        _coffeeOrderFacade = new CoffeeOrderFacade(_orderRepository);
+    }
+    
     public int CreateOrder(Type type, Size size)
     {
-        double k = (double)size / (double)Size.S;
-        
-        Coffee coffee = new Coffee()
-        {
-            Type = type,
-            Size = size,
-        };
-        
-        ChangeCoffeName(type, coffee);
-        CreateCoffeeIngredients(type, coffee, k);
-        
-        CoffeeOrder order = new CoffeeOrder
-        {
-            Price = GetCoffeOrderPrice(coffee),
-            Coffee = coffee,
-            OrderStatus = OrderStatus.Created
-        };
-
+        var order = _factory.CreateCoffeeOrder(type, size);
         _orderRepository.AddOrder(order);
         
         return order.Number;
     }
 
-    private static double GetCoffeOrderPrice(Coffee coffee)
-    {
-        return coffee.Ingredient.Beans / 8 * 10 + 
-               coffee.Ingredient.Milk / 100 * 20 +
-               coffee.Ingredient.Sugar / 5 * 5 +
-               coffee.Ingredient.Water / 50 * 5;
-    }
-
-    private static void CreateCoffeeIngredients(Type type, Coffee coffee, double k)
-    {
-        switch (type)
-        {
-            case Type.Cappuccino:
-                coffee.Ingredient = new Ingredient()
-                {
-                    Beans = 8 * k,
-                    Water = 50 * k,
-                    Milk = 100 * k
-                };
-                break;
-            case Type.Latte:
-                coffee.Ingredient = new Ingredient()
-                {
-                    Beans = 8 * k,
-                    Milk = 2 * 100 * k,
-                };
-                break;
-            case Type.Espresso:
-                coffee.Ingredient = new Ingredient()
-                {
-                    Beans = 8 * k,
-                    Water = 50 * k,
-                };
-                break;
-        }
-    }
-
-    private static void ChangeCoffeName(Type type, Coffee coffee)
-    {
-        switch (type)
-        {
-            case Type.Cappuccino:
-                coffee.Name = "Каппучино";
-                break;
-            case Type.Latte:
-                coffee.Name = "Латте";
-                break;
-            case Type.Espresso:
-                coffee.Name = "Еспрессо";
-                break;
-        }
-    }
-
     public bool AcceptPay(int orderNumber, double deposit)
     {
-        CoffeeOrder? order = _orderRepository.Get(orderNumber);
-        
-        if (order == null)
-        {
-            return false;
-        }
-
-        order.OrderStatus = OrderStatus.InProgress;
-        order.Deposit += deposit;
-        
-        return true;
+        return _coffeeOrderFacade.AcceptPay(orderNumber, deposit);
     }
 
     public void AddWater(int orderNumber)
     {
-        CoffeeOrder? order = _orderRepository.Get(orderNumber);
-        
-        if (order == null)
+        var ingredient = new Ingredient
         {
-            return;
-        }
-
-        order.Coffee.Ingredient.Water += 50;
-        order.Price += 5;
-        order.OrderStatus = OrderStatus.Ready;
+            Water = 50
+        };
+        
+        AddAdditional(orderNumber, 5, ingredient);
     }
 
     public void AddMilk(int orderNumber)
     {
-        CoffeeOrder? order = _orderRepository.Get(orderNumber);
-        
-        if (order == null)
+        var ingredient = new Ingredient
         {
-            return;
-        }
-
-        order.Coffee.Ingredient.Milk += 100;
-        order.Price += 20;
-        order.OrderStatus = OrderStatus.Ready;
+            Milk = 100
+        };
+        
+        AddAdditional(orderNumber, 20, ingredient);
     }
 
     public void AddBeans(int orderNumber)
     {
-        CoffeeOrder? order = _orderRepository.Get(orderNumber);
-        
-        if (order == null)
+        var ingredient = new Ingredient
         {
-            return;
-        }
-
-        order.Coffee.Ingredient.Beans += 8;
-        order.Price += 10;
-        order.OrderStatus = OrderStatus.Ready;
+            Beans = 8
+        };
+        
+        AddAdditional(orderNumber, 10, ingredient);
     }
 
     public void AddSugar(int orderNumber)
     {
-        CoffeeOrder? order = _orderRepository.Get(orderNumber);
-        
-        if (order == null)
+        var ingredient = new Ingredient
         {
-            return;
-        }
-
-        order.Coffee.Ingredient.Sugar += 5;
-        order.Price += 5;
-        order.OrderStatus = OrderStatus.Ready;
+            Sugar = 5
+        };
+        
+        AddAdditional(orderNumber, 5, ingredient);
     }
 
     public CoffeePrepareResult PrepareCoffee(int orderNumber)
@@ -201,5 +113,22 @@ public class CoffeeMachine : ICoffeeMachine
             IsPrepared = true,
             Change = order.Deposit - order.Price,
         };
+    }
+
+    private void AddAdditional(int orderNumber, double price, Ingredient ingredient)
+    {
+        CoffeeOrder? order = _orderRepository.Get(orderNumber);
+        
+        if (order == null)
+        {
+            return;
+        }
+
+        order.Coffee.Ingredient.Sugar += ingredient.Sugar;
+        order.Coffee.Ingredient.Water += ingredient.Water;
+        order.Coffee.Ingredient.Beans += ingredient.Beans;
+        order.Coffee.Ingredient.Milk += ingredient.Milk;
+        order.Price += price;
+        order.OrderStatus = OrderStatus.Ready;
     }
 }
