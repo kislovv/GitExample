@@ -2,27 +2,25 @@
 using ReflectionExample;
 using ReflectionExample.zUnit;
 
-/*var sportsman = new Sportsman()
+var product = new Product(12.0m, TypeOfProduct.Wood);
+
+Console.WriteLine(product);
+
+var version = Console.ReadLine();
+
+var productType  = typeof(Product);
+
+var method = productType.GetMethods()
+    .FirstOrDefault(m => m.GetCustomAttributes<MethodVersionAttribute>().Any(atr => atr.Version == version));
+
+if (method != null)
 {
-    Age = 18,
-    Category = 2,
-    Height = 187,
-    Sport = "Football",
-    Name = "Ronaldo",
-    Weight = 75,
-};
+    string result = (string) method.Invoke(product, null)!;
 
-var type = sportsman.GetType();
-var attribute = type.GetCustomAttribute<MyAttributeUsage>();
+    Console.WriteLine(result);
+}
 
-var participant = new CompetitionParticipant()
-{
-    CompetitionName = "Euro Cup",
-    SportName = "Big Football",
-    Info = SimpleMapper.Map<Sportsman, ParticipantInfo>(sportsman),
-};*/
-
-ZUnit.Run();
+//ZUnit.Run();
 
 
 

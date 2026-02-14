@@ -24,6 +24,7 @@ public class ZUnitExample
     [ZTheory]
     [InlineData(1, 2, 3)]
     [InlineData(1, -1, 0)]
+    [InlineData(0, 0, 0)]
     public void SumOfSeveralNumbersReturnTrue(int a, int b, int sum)
     {
         Assert.Equals(a+b, sum);
