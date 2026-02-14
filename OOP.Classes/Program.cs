@@ -1,62 +1,64 @@
 ﻿using OOP.Classes;
 
-/*
-var firstStudent = new Student(26)
+Student student = new Student("Жиляев Айдамир Хазретович", 18)
 {
-    Name = "Li",
-    LastName = "Kislov",
-    MidName = "Alexseevich"
+    TypeOfStudy = TypeOfStudy.University,
+};
+Student secondStudent = new Student("Кислов Кирилл Алексеевич", 28)
+{
+    TypeOfStudy = TypeOfStudy.University,
+};
+Student thirdStudent = new Student("Аткнин Алексей Александрович", 18)
+{
+    TypeOfStudy = TypeOfStudy.University,
 };
 
-Console.WriteLine(
-    $"Меня зовут {firstStudent.Name}, мне {firstStudent.GetAge()} лет. Мой профиль обучения : {firstStudent.GetTypeOfStudying()}");
-
-firstStudent.SetEndedAt(DateTimeOffset.Now.AddYears(6));
-
-Console.WriteLine($"Я закончу обучение в {firstStudent.GetEndedAt().Year} году");
+student.Study();
+student.Study();
+student.Study();
 
 
-var secondStudent = new Student( 18, TypeOfStudying.University );
+secondStudent.Study();
+secondStudent.Study();
+secondStudent.Study();
 
-Console.WriteLine(
-    $"Меня зовут {secondStudent.Name}, мне {secondStudent.GetAge()} лет. Мой профиль обучения : {secondStudent.GetTypeOfStudying()}");
+thirdStudent.Study();
+thirdStudent.Study();
+thirdStudent.Study();
 
 
-var students = new Student[] {firstStudent, secondStudent};
+Student[]  students = [student,  secondStudent, thirdStudent];
 
-var studentComparer = new StudentComparer();
-Array.Sort(students, studentComparer);
+Array.Sort(students, new  StudentComparer());
 
-secondStudent = null;
 
-if (firstStudent?.Name == "Kirill")
+foreach (Student currentStudent in students)
 {
-    Console.WriteLine("Это лучший препод на свете :)");
+    Console.WriteLine(currentStudent);
 }
 
-firstStudent.LastName ??= "Kislov";
-
-firstStudent.LastName = secondStudent?.LastName ?? "Kislov";
-*/
-
-static string GetCheck(decimal value, string currency)
+var game = new Game(Genre.Pony)
 {
-
-    var moneyWithCurrency = currency switch
-    {
-        "RUR" => value.RubleConverter(),
-        "USD" => value.DollarConverter(),
-        _ => throw new ArgumentException(nameof(currency))
-    };
-    return $"Ваш чек составил {value} {moneyWithCurrency}";
-}
+    Name = "My little Pony"
+};
 
 
-Console.WriteLine(GetCheck(150.5m, "RUR"));
-Console.WriteLine(GetCheck(250.15m, "USD"));
-Console.WriteLine(GetCheck(250.15m, "SOM"));
+//student.Sleep();
 
-var rubs = 100.0m;
+//Console.WriteLine(student);
+int amount = 345;
+Console.WriteLine(amount.Convert());
+string input = "cat";
+Console.WriteLine(input.Reverse());
 
-Console.WriteLine(rubs.RubleConverter());
 
+IRocket souz = new Souz();
+
+FalconS fs = new FalconS();
+
+
+RocketStation.Start(souz, fs);
+
+
+Human h = new Student("Kislov Kirill", 28, TypeOfStudy.University);
+h.Sleep();

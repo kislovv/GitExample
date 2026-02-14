@@ -2,35 +2,20 @@
 
 public static class CurrencyConverter
 {
-    public static string RubleConverter(this decimal inputMoney)
+    public static string Convert(this int amount)
     {
-        var wholeMoney = (long)inputMoney;
-        if (wholeMoney % 100 < 20 && 10 < wholeMoney % 100)
+        if (amount % 100 > 10 && amount % 100 < 20)
         {
-            return "рублей";
+            return $"{amount} рублей";
         }
-        if (wholeMoney % 10 == 1)
+        if (amount % 10 > 1 && amount % 10 < 5)
         {
-            return "рубль";
+            return $"{amount} рубля";
         }
-        if ((wholeMoney % 10) > 1 && (wholeMoney % 10) < 5)
+        if (amount % 10 == 1)
         {
-            return "рубля";
+            return $"{amount} рубль";
         }
-
-        return "рублей";
-    }
-    public static string DollarConverter(this decimal inputMoney)
-    {
-        var wholeMoney = (long)inputMoney;
-        
-        return (wholeMoney % 100 < 20 && 10 < wholeMoney % 100)
-            ? "долларов"
-            : (wholeMoney % 10 == 1)
-                ? "доллар"
-                : ((wholeMoney % 10) > 1 && (wholeMoney % 10) < 5)
-                    ? "доллара"
-                    : "долларов";
+        return $"{amount} рублей";
     }
 }
-

@@ -1,83 +1,51 @@
-﻿using System.Reflection;
-using System.Xml.Linq;
+﻿namespace OOP.Classes;
 
-namespace OOP.Classes;
-
-public class Student : IComparable
+public class Student : Human
 {
-    private string _name;
-    public string? Name
-    {
-        get
-        {
-            return _name;
-        }
-        init
-        {
-            if (_name == null || _name.Length < 3)
-            {
-                throw new ArgumentException(nameof(_name));
-            }
-            _name = value;
-        }
-        
-    }
+    public TypeOfStudy TypeOfStudy { get; init; }
+    public int LevelOfKnowledge { get; private set; }
 
-    public string LastName { get; set; }
-    public string MidName { get; init; }
-    private int age;
-    private TypeOfStudying typeOfStudying;
-    private DateTimeOffset startedAt;
-    private DateTimeOffset endedAt;
-
-    public Student(int age)
+    public Student(string fullName, int age): base(fullName, age)
     {
-        this.age = age;
-        typeOfStudying = TypeOfStudying.University;
-        startedAt = DateTimeOffset.Now;
-        endedAt = DateTimeOffset.Now.AddYears(4);
-    }
-
-    public Student(int age,
-        TypeOfStudying typeOfStudying) : this(age)
-    {
-        this.typeOfStudying = typeOfStudying;
+        LevelOfKnowledge = 50;
+        TypeOfStudy = TypeOfStudy.University;
     }
     
-    public int GetAge()
+    public Student(string fullName, int age,
+        TypeOfStudy typeOfStudy): this(fullName, age)
     {
-        return age;
+        TypeOfStudy = typeOfStudy;
     }
 
-    public TypeOfStudying GetTypeOfStudying()
+    public void Study()
     {
-        return typeOfStudying;
+        Random rand = new Random();
+        LevelOfKnowledge = rand.Next(1, 100);
     }
 
-    public DateTimeOffset GetEndedAt()
+    public void PassExam()
     {
-        return endedAt;
-    }
-
-    public void SetEndedAt(DateTimeOffset endedAt)
-    {
-        this.endedAt = endedAt;
-    }
-
-    public int CompareTo(object? obj)
-    {
-        if(obj is not Student student)
+        if (LevelOfKnowledge < 56)
         {
-            throw new ArgumentException();
+            Console.WriteLine("Not today!");
+            return;
         }
-        if(student.age > this.age)
-        {
-            return 1;
-        }
-        if(student.age < this.age)
-        {
-            return -1;
-        }
-        return 0;
+
+        Age++;
+    }
+
+    public override void Eat()
+    {
+        Console.WriteLine($"{FullName} as student eating in shawerma:) ");
+    }
+
+    public new void Sleep()
+    {
+        Console.WriteLine($"{FullName} as student sleeping in dorm");
+    }
+
+    public override string ToString()
+    {
+        return $"Name: {FullName}\nAge: {Age}\nStudy in: {TypeOfStudy}\nLevel: {LevelOfKnowledge}";
     }
 }
