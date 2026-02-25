@@ -4,8 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        int[] array = [1, 9, 18, 2, 4, 7, 11, 9, 16, 22];
-        ShakerSort(array);
+        int[] array = [1, 27, 18, 2, 4, 7, 11, 9, 16, 22];
+        BrushSort(array);
         Console.WriteLine(string.Join(" ", array));
     }
 
@@ -62,5 +62,26 @@ class Program
                 break;
             }
         }
+    }
+
+    static void BrushSort(int[] array)
+    {
+        int distance = array.Length/2;
+        bool swapped = false;
+        while (distance > 0)
+        {
+            for (int i = 0; i + distance < array.Length; i++)
+            {
+                if (array[i] > array[i + distance])
+                {
+                    (array[i + distance], array[i]) = (array[i], array[i + distance]);
+                    swapped = true;
+                }
+            }
+            distance = (int)(distance / 1.247);
+            
+        }
+        BubbleSort(array);
+        
     }
 }

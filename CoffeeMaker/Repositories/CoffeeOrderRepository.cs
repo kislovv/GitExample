@@ -1,4 +1,4 @@
-﻿namespace CoffeeMaker;
+﻿namespace CoffeeMaker.Repositories;
 
 public class CoffeeOrderRepository :  ICoffeeOrderRepository
 {
