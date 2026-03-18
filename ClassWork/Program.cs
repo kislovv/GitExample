@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 
 namespace ClassWork;
@@ -26,26 +27,6 @@ class Program
 		Console.WriteLine(myOperation(8, 8));
 		*/
 		
-		var productList = new List<Product>
-		{
-			new Product { Id = Guid.NewGuid(), Name = "Pizza", Price = 10 },
-			new Product { Id = Guid.NewGuid(), Name = "Rolls", Price = 20 },
-			new Product { Id = Guid.NewGuid(), Name = "Burgers", Price = 30 },
-			new Product { Id = Guid.NewGuid(), Name = "Strawberry", Price = 40 },
-			new Product { Id = Guid.NewGuid(), Name = "Chips", Price = 50 },
-		};
-
-		var storageHandler = new StorageProductHandler(productList);
-		var markingHandler = new MarkingProductHandler();
-		var finishHandler = new FinishProductHandler();
-
-		storageHandler.Next = markingHandler;
-		markingHandler.Next = finishHandler;
-
-		var produt = new Product
-		{
-			Name = "Pizza",
-		};
 		
 		/*Student student = new Student();
 		StudentOp stOp = AddName;
