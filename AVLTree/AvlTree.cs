@@ -1,69 +1,209 @@
-﻿namespace AVLTree;
+﻿using AVLTree;
 
-public class AvlTree<T>(T data)
+public class AvlTree<T>
 {
-    public AVLNode<T> Root { get; set; } = new()
+    public AVLNode<T>? Root { get; private set; }
+
+    public void Add(T data)
     {
-        Data = data
-    };
-    
-    public void Add(T Data)
+        Root = Add(Root, data);
+    }
+
+    public void Remove(T data)
     {
-        var addedNode = new AVLNode<T>
+        Root = Remove(Root, data);
+    }
+
+    public bool Contains(T data)
+    {
+        return Contains(Root, data);
+    }
+
+    public List<T> InOrder()
+    {
+        var result = new List<T>();
+        InOrder(Root, result);
+        return result;
+    }
+
+    private AVLNode<T> Add(AVLNode<T>? node, T data)
+    {
+        if (node == null)
         {
-            Data = data
+            return new AVLNode<T>
+            {
+                Data = data
+            };
+        }
+
+        int compareResult = Comparer<T>.Default.Compare(data, node.Data);
+
+        if (compareResult < 0)
+        {
+            node.Left = Add(node.Left, data);
+        }
+        else if (compareResult > 0)
+        {
+            node.Right = Add(node.Right, data);
+        }
+        else
+        {
+            return node;
+        }
+
+        UpdateHeight(node);
+        return Balance(node);
+    }
+
+    private AVLNode<T>? Remove(AVLNode<T>? node, T data)
+    {
+        if (node == null)
+            return null;
+
+        int compareResult = Comparer<T>.Default.Compare(data, node.Data);
+
+        if (compareResult < 0)
+        {
+            node.Left = Remove(node.Left, data);
+        }
+        else if (compareResult > 0)
+        {
+            node.Right = Remove(node.Right, data);
+        }
+        else
+        {
+            switch (node.Left)
+            {
+                // 1. Нет детей
+                case null when node.Right == null:
+                    return null;
+                // 2. Только правый ребенок
+                case null:
+                    return node.Right;
+            }
+
+            // 3. Только левый ребенок
+            if (node.Right == null)
+            {
+                return node.Left;
+            }
+
+            // 4. Два ребенка
+            var minNode = FindMin(node.Right);
+            node.Data = minNode.Data;
+            node.Right = Remove(node.Right, minNode.Data);
+        }
+
+        UpdateHeight(node);
+        return Balance(node);
+    }
+
+    private bool Contains(AVLNode<T>? node, T data)
+    {
+        if (node == null)
+            return false;
+
+        var compareResult = Comparer<T>.Default.Compare(data, node.Data);
+
+        return compareResult switch
+        {
+            0 => true,
+            < 0 => Contains(node.Left, data),
+            _ => Contains(node.Right, data)
         };
-        var current = Root;
-        while (true)
+    }
+
+    private void InOrder(AVLNode<T>? node, List<T> result)
+    {
+        if (node == null)
+            return;
+
+        InOrder(node.Left, result);
+        result.Add(node.Data);
+        InOrder(node.Right, result);
+    }
+
+    private AVLNode<T> FindMin(AVLNode<T> node)
+    {
+        return node.Left == null ? node : FindMin(node.Left);
+    }
+
+    private int GetHeight(AVLNode<T>? node)
+    {
+        return node?.Height ?? 0;
+    }
+
+    private void UpdateHeight(AVLNode<T> node)
+    {
+        var leftHeight = GetHeight(node.Left);
+        var rightHeight = GetHeight(node.Right);
+        node.Height = Math.Max(leftHeight, rightHeight) + 1;
+    }
+
+    private int GetBalanceFactor(AVLNode<T>? node)
+    {
+        if (node == null)
+            return 0;
+
+        return GetHeight(node.Right) - GetHeight(node.Left);
+    }
+
+    private AVLNode<T> Balance(AVLNode<T> node)
+    {
+        var balanceFactor = GetBalanceFactor(node);
+
+        switch (balanceFactor)
         {
-            if (Comparer<T>.Default.Compare(
-                    current.Data, addedNode.Data) > 0)
+            // Перевес вправо
+            case 2:
             {
-                if (current.Left != null)
+                if (GetBalanceFactor(node.Right) < 0)
                 {
-                    current = current.Left;
+                    node.Right = RotateRight(node.Right!);
                 }
-                else
-                {
-                    current.Left = addedNode;
-                    //TODO: Balance
-                    break;
-                }
+
+                return RotateLeft(node);
             }
-            else
+            // Перевес влево
+            case -2:
             {
-                if (current.Right != null)
+                if (GetBalanceFactor(node.Left) > 0)
                 {
-                    current = current.Right;
+                    node.Left = RotateLeft(node.Left!);
                 }
-                else
-                {
-                    current.Right = addedNode;
-                    //TODO: Balance
-                    break;
-                }
+
+                return RotateRight(node);
             }
+            default:
+                return node;
         }
     }
 
-    private void AddInternal(AVLNode<T> insertNode, AVLNode<T> currentNode)
+    private AVLNode<T> RotateLeft(AVLNode<T> node)
     {
-        
+        var newRoot = node.Right!;
+        var movedSubTree = newRoot.Left;
+
+        newRoot.Left = node;
+        node.Right = movedSubTree;
+
+        UpdateHeight(node);
+        UpdateHeight(newRoot);
+
+        return newRoot;
     }
 
-    private void Balance()
+    private AVLNode<T> RotateRight(AVLNode<T> node)
     {
-        
-    }
+        var newRoot = node.Left!;
+        var movedSubTree = newRoot.Right;
 
-    private void RightRotation(AVLNode<T> subTree)
-    {
-        
+        newRoot.Right = node;
+        node.Left = movedSubTree;
+
+        UpdateHeight(node);
+        UpdateHeight(newRoot);
+
+        return newRoot;
     }
-    
-    private void LeftRotation(AVLNode<T> subTree)
-    {
-        
-    }
-    
 }
