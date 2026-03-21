@@ -1,89 +1,142 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.RegularExpressions;
 
 
 namespace ClassWork;
 
 class Program
 {
-	
-	delegate int MyOperation(int a, int b);
-	
-	delegate void StudentOp(Student student);
-	
 	static void Main(string[] args)
 	{
-		/*
-		MyOperation myOperation = Add;
-		Console.WriteLine(myOperation(1, 2));
-		myOperation = Subtract;
-		Console.WriteLine(myOperation(4, 5));
-		myOperation = Add;
-		myOperation += Subtract;
-		Console.WriteLine(myOperation(4, 5));
-
-		myOperation -= Add;
-		myOperation += Add;
-		Console.WriteLine(myOperation(8, 8));
-		*/
+		string path = "input.txt";
+		CreateTextFrequencyAnalyze(path);
 		
+		var employees = new List<Employee>
+		{
+			new Employee { Appointment = "Junior Developer", Experience = 1, Salary = 60000 },
+			new Employee { Appointment = "Middle Developer", Experience = 3, Salary = 120000 },
+			new Employee { Appointment = "Senior Developer", Experience = 6, Salary = 220000 },
+			new Employee { Appointment = "Team Lead", Experience = 8, Salary = 280000 },
+			new Employee { Appointment = "Project Manager", Experience = 10, Salary = 300000 },
+			new Employee { Appointment = "QA Engineer", Experience = 2, Salary = 90000 },
+			new Employee { Appointment = "DevOps Engineer", Experience = 5, Salary = 200000 },
+			new Employee { Appointment = "System Analyst", Experience = 4, Salary = 150000 },
+			new Employee { Appointment = "Architect", Experience = 12, Salary = 350000 },
+			new Employee { Appointment = "Intern", Experience = 0, Salary = 30000 }
+		};
 		
-		/*Student student = new Student();
-		StudentOp stOp = AddName;
-		stOp+=AddAge;
-		stOp+=AddCourse;
-		stOp(student);
-
-		Console.WriteLine($"{student.Name}\n {student.Age}\n {student.Course}");*/
-		/*
-		var account = new Account(NotificationConsole);
-		account.Deposit(10);
-		account.Withdraw(1000);
-		account.Deposit(100);
-		account.Withdraw(100);
-		account.Deposit(100);
-		*/
-		WeatherObservable weatherObservable = new WeatherObservable(20.0);
-		IObserver pcObserver = new PcWeatherObserver();
-		IObserver mobileObserver = new MobileWeatherObserver();
-		weatherObservable.UpdateTemperatureDelegate += mobileObserver.Update;
-		weatherObservable.UpdateTemperatureDelegate += pcObserver.Update;
-		weatherObservable.UpdateTemperature();
-	}
-
-	static void NotificationConsole(Account account, AccountArgs args)
-	{
-		Console.ForegroundColor = args.OperationResult 
-			? ConsoleColor.Yellow
-			: ConsoleColor.Blue;
+		File.WriteAllText("output.json", JsonSerializer.Serialize(employees));
 		
-		Console.WriteLine(args.Message);
-		Console.ResetColor();
-	}
-	
-	static int Add(int a, int b)
-	{
-		return a + b;
-	}
-	
-	static int Subtract(int a, int b)
-	{
-		return a - b;
+		SaveEmployeeDat(employees);
+		var result =  LoadEmployeeDat("output.dat");
+
+		Console.WriteLine(string.Join(" \n", result.Select(e => $"{e.Appointment};{e.Experience};{e.Salary}")));
+		
+		AnalyseWorkers("employees.csv");
 	}
 
-	static void AddName(Student student)
+
+	public static void CreateTextFrequencyAnalyze(string filePath)
 	{
-		student.Name = Guid.NewGuid().ToString();
+		Dictionary<string, int>  wordsFrequency = new();
+
+		using FileStream fileStream = new FileStream(filePath, FileMode.Open);
+		using StreamReader streamReader = new StreamReader(fileStream);
+		
+		string? line;
+		while ((line = streamReader.ReadLine()) != null)
+		{
+			line = Regex.Replace(line, @"[^a-zA-Zа-яА-Я0-9\s]", "");
+			
+			var words = line.ToLower().Split(' ');
+
+			foreach (var word in words)
+			{
+				if (!wordsFrequency.TryAdd(word, 1))
+				{
+					wordsFrequency[word]++;
+				}
+			}
+		}
+		
+		using StreamWriter streamWriter = new StreamWriter("output.txt");
+		foreach (var word in wordsFrequency.OrderBy(w => w.Value))
+		{
+			streamWriter.WriteLine($"{word.Key} - {word.Value}");
+		}
 	}
 
-	static void AddAge(Student student)
+	public static void SaveEmployeeDat(List<Employee> employees)
 	{
-		student.Age = new Random().Next(18,22);
+		using FileStream fileStream = new FileStream("output.dat", FileMode.Create);
+		using BinaryWriter binaryWriter = new BinaryWriter(fileStream);
+		foreach (Employee employee in employees)
+		{
+			binaryWriter.Write(employee.Appointment);
+			binaryWriter.Write(employee.Experience);
+			binaryWriter.Write(employee.Salary);
+		}
 	}
 
-	static void AddCourse(Student student)
+	public static List<Employee> LoadEmployeeDat(string filePath)
 	{
-		student.Course = Guid.NewGuid().ToString();
+		var result = new List<Employee>();
+		
+		using FileStream fileStream = new FileStream(filePath, FileMode.Open);
+		using BinaryReader binaryReader = new BinaryReader(fileStream);
+		while (binaryReader.BaseStream.Position < binaryReader.BaseStream.Length)
+		{
+			var employee = new Employee
+			{
+				Appointment = binaryReader.ReadString(),
+				Experience = binaryReader.ReadInt32(),
+				Salary = binaryReader.ReadDecimal(),
+			};
+			result.Add(employee);
+		}
+		
+		return result;
+	}
+
+	public static void AnalyseWorkers(string filePath)
+	{
+		var workers = new List<Worker>();
+		using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
+		{
+			using StreamReader streamReader = new StreamReader(fileStream);
+			var line = streamReader.ReadLine(); //ignoring headers
+			while ((line = streamReader.ReadLine()) != null)
+			{
+				var data = line.Split(',');
+				var worker = new Worker
+				{
+					Name = data[0],
+					Age = int.Parse(data[1]),
+					Department = data[2]
+				};
+				workers.Add(worker);
+			}
+		}
+
+		var oldest = workers.MaxBy(w => w.Age);
+		
+		var departmentsGroups = workers.GroupBy(w => w.Department)
+			.ToDictionary(group => group.Key, 
+				group => group.Average(w => w.Age));
+
+		using StreamWriter streamWriter = new StreamWriter("outputWorkers.txt");
+
+		streamWriter.WriteLine($"Самый старший сотрудник: {oldest!.Name}. Возраст: {oldest.Age}");
+		foreach (var departmentsGroup in departmentsGroups)
+		{
+			streamWriter.WriteLine($"{departmentsGroup.Key}: средний возраст: {departmentsGroup.Value}");
+		}
+		
 	}
 }
 

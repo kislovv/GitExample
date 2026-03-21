@@ -1,8 +1,8 @@
 ﻿namespace ClassWork;
 
-public class Student
+public class Worker
 {
     public string Name { get; set; }
     public int Age { get; set; }
-    public string Course { get; set; }
+    public string Department { get; set; }
 }
