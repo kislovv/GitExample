@@ -13,6 +13,15 @@ public class AvlTree<T>(T data)
         {
             Data = data
         };
+
+        if (Root == null)
+        {
+            Root = addedNode;
+            return;
+        }
+        
+        AddInternal(addedNode, Root);
+        
         var current = Root;
         while (true)
         {
@@ -46,24 +55,67 @@ public class AvlTree<T>(T data)
         }
     }
 
-    private void AddInternal(AVLNode<T> insertNode, AVLNode<T> currentNode)
+    private void AddInternal(AVLNode<T> insertNode, AVLNode<T>? currentNode)
     {
-        
+        if (currentNode == null)
+        {
+            currentNode = insertNode;
+        }
+        else
+        {
+            if (Comparer<T>.Default.Compare(
+                    currentNode.Data, insertNode.Data) > 0)
+            {
+                AddInternal(insertNode, currentNode.Left);
+            }
+
+            if (Comparer<T>.Default.Compare(
+                    currentNode.Data, insertNode.Data) < 0)
+            {
+                AddInternal(insertNode, currentNode.Right);
+            }
+        }
+        //TODO: Balance
+        if (currentNode.BalanceFactor is > 1 or < -1)
+        {
+            
+        }
     }
 
-    private void Balance()
+    private void Balance(AVLNode<T> parentNode)
     {
-        
+        switch (parentNode.BalanceFactor)
+        {
+            case 2 when parentNode.Right!.BalanceFactor == 1:
+                RightRotation(parentNode);
+                break;
+            case 2 when parentNode.Right.BalanceFactor == -1:
+                parentNode.Right = RightRotation(parentNode);
+                LeftRotation(parentNode);
+                break;
+            case -2 when parentNode.Left!.BalanceFactor == -1:
+                LeftRotation(parentNode);
+                break;
+            case -2 when parentNode.Left.BalanceFactor == 1:
+                parentNode.Left = LeftRotation(parentNode.Left);
+                RightRotation(parentNode);
+                break;
+        }
     }
 
-    private void RightRotation(AVLNode<T> subTree)
+    private AVLNode<T> RightRotation(AVLNode<T> subTree)
     {
-        
+        var temp = subTree.Left;
+        subTree.Left = temp!.Right;
+        temp.Right = subTree;
+        return temp;
     }
     
-    private void LeftRotation(AVLNode<T> subTree)
+    private AVLNode<T> LeftRotation(AVLNode<T> subTree)
     {
-        
+        var newRoot = subTree.Right;
+        subTree.Right = newRoot!.Left;
+        newRoot.Left = subTree;
+        return newRoot;
     }
-    
 }

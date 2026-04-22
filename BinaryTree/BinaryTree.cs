@@ -9,6 +9,7 @@ public class BinaryTree<T>(T rootData) where T : IComparable<T>
         if (_root == null)
         {
             _root = new TreeNode<T>(data);
+            return;
         }
         
         Add(_root, data);
